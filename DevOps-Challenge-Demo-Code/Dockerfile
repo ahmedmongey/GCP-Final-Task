@@ -12,4 +12,4 @@ ENV ENVIRONMENT=DEV HOST=localhost PORT=8000 REDIS_HOST=localhost REDIS_PORT=637
 
 EXPOSE 8000
 
-CMD ["python", "hello.py"]cd
+CMD ["python", "hello.py"]
