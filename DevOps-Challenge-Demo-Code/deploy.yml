@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: my-image
-        image: gcr.io/mongy-367814/my-image:latest
+        image: gcr.io/mongy0123/my-image:tag1
         ports:
         - containerPort: 8080
