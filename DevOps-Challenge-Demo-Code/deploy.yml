@@ -2,20 +2,39 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-deployment
-  labels:
-    app: gcp-app
 spec:
-  replicas: 3
   selector:
     matchLabels:
+      name: my-deployment
       app: gcp-app
   template:
     metadata:
       labels:
+        name: my-deployment
         app: gcp-app
     spec:
       containers:
-      - name: my-image
-        image: gcr.io/mongy0123/my-image:tag1
+      - name: redis
+        image: redis
         ports:
-        - containerPort: 8080
+        - containerPort: 6379
+      - name: my-deployment
+        image: us-central1-docker.pkg.dev/mongy0123/new-docker-repo/my-image:tag1 
+        ports:
+        - containerPort: 8000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+  labels:
+    app: app
+spec:
+  type: LoadBalancer
+  selector:
+    name: new-service
+    app: app
+  ports:
+  - port: 8000
+    targetPort: 8000
